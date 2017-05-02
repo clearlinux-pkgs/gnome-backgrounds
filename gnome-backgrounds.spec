@@ -4,7 +4,7 @@
 #
 Name     : gnome-backgrounds
 Version  : 3.24.0
-Release  : 1
+Release  : 2
 URL      : https://download.gnome.org/sources/gnome-backgrounds/3.24/gnome-backgrounds-3.24.0.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-backgrounds/3.24/gnome-backgrounds-3.24.0.tar.xz
 Summary  : No detailed summary available
