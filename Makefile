@@ -1,5 +1,5 @@
 PKG_NAME := gnome-backgrounds
-URL := https://download.gnome.org/sources/gnome-backgrounds/3.24/gnome-backgrounds-3.24.0.tar.xz
+URL := https://github.com/GNOME/gnome-backgrounds/archive/3.26.0.tar.gz
 
 
 include ../common/Makefile.common
