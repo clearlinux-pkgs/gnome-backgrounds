@@ -4,7 +4,7 @@
 #
 Name     : gnome-backgrounds
 Version  : 3.28.0
-Release  : 8
+Release  : 9
 URL      : https://github.com/GNOME/gnome-backgrounds/archive/3.28.0.tar.gz
 Source0  : https://github.com/GNOME/gnome-backgrounds/archive/3.28.0.tar.gz
 Summary  : No detailed summary available
