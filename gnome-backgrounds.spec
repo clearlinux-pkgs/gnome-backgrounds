@@ -4,14 +4,15 @@
 #
 Name     : gnome-backgrounds
 Version  : 40.1
-Release  : 17
-URL      : https://github.com/GNOME/gnome-backgrounds/archive/40.1/gnome-backgrounds-40.1.tar.gz
-Source0  : https://github.com/GNOME/gnome-backgrounds/archive/40.1/gnome-backgrounds-40.1.tar.gz
+Release  : 18
+URL      : https://download.gnome.org/sources/gnome-backgrounds/40/gnome-backgrounds-40.1.tar.xz
+Source0  : https://download.gnome.org/sources/gnome-backgrounds/40/gnome-backgrounds-40.1.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC-BY-2.0 CC-BY-SA-2.0 CC-BY-SA-3.0 GPL-2.0
 Requires: gnome-backgrounds-data = %{version}-%{release}
 Requires: gnome-backgrounds-license = %{version}-%{release}
+BuildRequires : buildreq-gnome
 BuildRequires : buildreq-meson
 BuildRequires : gettext
 BuildRequires : itstool
@@ -45,15 +46,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1622761844
+export SOURCE_DATE_EPOCH=1628200780
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
 
