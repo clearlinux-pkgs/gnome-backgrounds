@@ -4,7 +4,7 @@
 #
 Name     : gnome-backgrounds
 Version  : 43
-Release  : 22
+Release  : 23
 URL      : https://download.gnome.org/sources/gnome-backgrounds/43/gnome-backgrounds-43.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-backgrounds/43/gnome-backgrounds-43.tar.xz
 Summary  : No detailed summary available
