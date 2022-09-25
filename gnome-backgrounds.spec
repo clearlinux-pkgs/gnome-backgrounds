@@ -4,7 +4,7 @@
 #
 Name     : gnome-backgrounds
 Version  : 43
-Release  : 23
+Release  : 24
 URL      : https://download.gnome.org/sources/gnome-backgrounds/43/gnome-backgrounds-43.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-backgrounds/43/gnome-backgrounds-43.tar.xz
 Summary  : No detailed summary available
@@ -46,7 +46,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1663949868
+export SOURCE_DATE_EPOCH=1664147019
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
