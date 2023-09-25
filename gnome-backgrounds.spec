@@ -4,10 +4,10 @@
 # Using build pattern: meson
 #
 Name     : gnome-backgrounds
-Version  : 44.0
-Release  : 27
-URL      : https://download.gnome.org/sources/gnome-backgrounds/44/gnome-backgrounds-44.0.tar.xz
-Source0  : https://download.gnome.org/sources/gnome-backgrounds/44/gnome-backgrounds-44.0.tar.xz
+Version  : 45.0
+Release  : 28
+URL      : https://download.gnome.org/sources/gnome-backgrounds/45/gnome-backgrounds-45.0.tar.xz
+Source0  : https://download.gnome.org/sources/gnome-backgrounds/45/gnome-backgrounds-45.0.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC-BY-SA-3.0
@@ -42,69 +42,74 @@ license components for the gnome-backgrounds package.
 
 
 %prep
-%setup -q -n gnome-backgrounds-44.0
-cd %{_builddir}/gnome-backgrounds-44.0
+%setup -q -n gnome-backgrounds-45.0
+cd %{_builddir}/gnome-backgrounds-45.0
+pushd ..
+cp -a gnome-backgrounds-45.0 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680026597
+export SOURCE_DATE_EPOCH=1695679052
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
+CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 -O3" CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 " LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3" meson --libdir=lib64 --prefix=/usr --buildtype=plain   builddiravx2
+ninja -v -C builddiravx2
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/gnome-backgrounds
 cp %{_builddir}/gnome-backgrounds-%{version}/COPYING %{buildroot}/usr/share/package-licenses/gnome-backgrounds/2995e7d53219d710383087253fb9a1e760e44f35 || :
+DESTDIR=%{buildroot}-v3 ninja -C builddiravx2 install
 DESTDIR=%{buildroot} ninja -C builddir install
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
 
 %files data
 %defattr(-,root,root,-)
-/usr/share/backgrounds/gnome/adwaita-d.webp
-/usr/share/backgrounds/gnome/adwaita-l.webp
+/usr/share/backgrounds/gnome/adwaita-d.jpg
+/usr/share/backgrounds/gnome/adwaita-l.jpg
 /usr/share/backgrounds/gnome/blobs-d.svg
 /usr/share/backgrounds/gnome/blobs-l.svg
-/usr/share/backgrounds/gnome/design-is-rounded-rectangles-d.webp
-/usr/share/backgrounds/gnome/design-is-rounded-rectangles-l.webp
+/usr/share/backgrounds/gnome/design-is-rounded-rectangles-d.jpg
+/usr/share/backgrounds/gnome/design-is-rounded-rectangles-l.jpg
 /usr/share/backgrounds/gnome/drool-d.svg
 /usr/share/backgrounds/gnome/drool-l.svg
-/usr/share/backgrounds/gnome/dune-d.svg
-/usr/share/backgrounds/gnome/dune-l.svg
-/usr/share/backgrounds/gnome/fold-d.webp
-/usr/share/backgrounds/gnome/fold-l.webp
-/usr/share/backgrounds/gnome/keys-d.webp
-/usr/share/backgrounds/gnome/keys-l.webp
-/usr/share/backgrounds/gnome/oceans.svg
-/usr/share/backgrounds/gnome/pills-d.webp
-/usr/share/backgrounds/gnome/pills-l.webp
-/usr/share/backgrounds/gnome/pixels-d.webp
-/usr/share/backgrounds/gnome/pixels-l.webp
-/usr/share/backgrounds/gnome/symbolic-d.webp
-/usr/share/backgrounds/gnome/symbolic-l.webp
-/usr/share/backgrounds/gnome/truchet-d.webp
-/usr/share/backgrounds/gnome/truchet-l.webp
-/usr/share/backgrounds/gnome/vnc-d.webp
-/usr/share/backgrounds/gnome/vnc-l.webp
+/usr/share/backgrounds/gnome/fold-d.jpg
+/usr/share/backgrounds/gnome/fold-l.jpg
+/usr/share/backgrounds/gnome/keys-d.jpg
+/usr/share/backgrounds/gnome/keys-l.jpg
+/usr/share/backgrounds/gnome/morphogenesis-d.svg
+/usr/share/backgrounds/gnome/morphogenesis-l.svg
+/usr/share/backgrounds/gnome/pills-d.jpg
+/usr/share/backgrounds/gnome/pills-l.jpg
+/usr/share/backgrounds/gnome/pixels-d.jpg
+/usr/share/backgrounds/gnome/pixels-l.jpg
+/usr/share/backgrounds/gnome/symbolic-d.png
+/usr/share/backgrounds/gnome/symbolic-l.png
+/usr/share/backgrounds/gnome/truchet-d.jpg
+/usr/share/backgrounds/gnome/truchet-l.jpg
+/usr/share/backgrounds/gnome/vnc-d.png
+/usr/share/backgrounds/gnome/vnc-l.png
 /usr/share/gnome-background-properties/adwaita.xml
 /usr/share/gnome-background-properties/blobs.xml
 /usr/share/gnome-background-properties/design-is-rounded-rectangles.xml
 /usr/share/gnome-background-properties/drool.xml
-/usr/share/gnome-background-properties/dune.xml
 /usr/share/gnome-background-properties/fold.xml
 /usr/share/gnome-background-properties/keys.xml
-/usr/share/gnome-background-properties/oceans.xml
+/usr/share/gnome-background-properties/morphogenesis.xml
 /usr/share/gnome-background-properties/pills.xml
 /usr/share/gnome-background-properties/pixels.xml
 /usr/share/gnome-background-properties/symbolic.xml
